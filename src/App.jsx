@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from "@/Navbar"
 import Gallery from '@/Gallery';
-import Projects from '@/Projects';
 import Footer from '@/Footer';
 const App = () => {
 
@@ -9,7 +8,6 @@ const App = () => {
     <div>
       <Navbar />
       <Gallery/>
-      {/* <Projects/> */}
       <Footer/>
     </div>
   );

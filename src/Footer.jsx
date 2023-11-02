@@ -4,23 +4,24 @@ const Footer = () => {
 
 
   return (
-    <div className="bg-gray-900 mt-[100px] pt-[60px] px-5">
+    <div className="bg-gray-900 mt-10 lg:mt-[100px] pt-[60px] px-5">
       <footer className="container mx-auto">
-        <div className="px-5 sm:px-0 text-white">
-          <div className="  flex-col justify-center items-center text-center border-b-2 border-white ">
-            <h2 className="text-3xl sm:text-4xl md:text-[57px] lg:leading-[70px]  font-bold mb-10">Let's work together</h2>
-            <button className="px-8 py-3 text-black font-bold text-[20px] bg-white text-center rounded-full sm:mb-[127px] mb-16 hover:bg-black hover:text-white  transition-all duration-500 ease-in-out">Get in touch</button>
+        <div className="text-white">
+          <div className="flex-col justify-center items-center text-center  ">
+            <h2 className="text-3xl sm:text-4xl md:text-[57px] lg:leading-[70px]  font-bold mb-10">Let's Work Together</h2>
+            <a href='https://github.com/HafezFaruk' target='_blank' className="px-8 py-3 text-black font-bold text-[20px] bg-white text-center rounded-full sm:mb-[127px] mb-16 hover:bg-gray-300  transition-all duration-500 ease-in-out">Get in touch</a>
           </div>
-          <div className="mt-[65px] ">
+          <hr className='my-16'/>
+          <div>
 
             <div className="flex flex-wrap justify-between gap-9 mb-20">
-              <a className="font-bold text-xl lg:text-5xl" href="/" rel="noopener noreferrer">
-                DVELOP.ME
+              <a className="font-bold text-xl lg:text-5xl" href="https://github.com/HafezFaruk" target='_blank'  >
+                DEVELOP.ME
               </a>
 
 
               <div>
-                <p className="font-medium text-xl mb-5">Location</p>
+                <p className="font-medium text-2xl mb-5">Location</p>
                 <div className="space-y-2 text-lg font-normal">
 
                   <p>Bangladesh</p>
@@ -31,21 +32,20 @@ const Footer = () => {
 
 
               <div >
-                <p className="font-medium text-xl mb-5">Page</p>
+                <p className="font-medium text-2xl mb-5">Support</p>
                 <ul className="flex flex-col gap-y-2 text-lg font-normal">
-                  <a href="#"> <li>Products</li></a>
-                  <a href="#"> <li>Contact Us</li></a>
-                  <a href="#"><li>About Us</li></a>
-                  <a href="#"><li>Blog</li></a>
+                   <li>Web Design</li>
+                  <li>Web App Development</li>
+                 <li>Mobile App</li>
                 </ul>
               </div>
               <div >
-                <p className="font-medium text-xl mb-5">Social</p>
+                <p className="font-medium text-2xl mb-5">Social</p>
                 <ul className="flex flex-col gap-y-2 text-lg font-normal">
-                  <a href="#"><li>Facebook</li></a>
-                  <a href="#"><li>Instagram</li></a>
-                  <a href="#"><li>Twitter</li></a>
-                  <a href="#"><li>linkedin</li></a>
+                  <a className="hover:text-green-300" target='_blank' href="https://www.facebook.com/HafezFarukBD/"><li>Facebook</li></a>
+                  <a className="hover:text-green-300" target='_blank' href="https://www.instagram.com/hafez_faruk/"><li>Instagram</li></a>
+                  <a className="hover:text-green-300" target='_blank' href="https://twitter.com/HafezFaruk5"><li>Twitter</li></a>
+                  <a className="hover:text-green-300" target='_blank' href="https://www.linkedin.com/in/hafez-faruk/"><li>linkedin</li></a>
                 </ul>
               </div>
 
