@@ -21,7 +21,7 @@ const Navbar = () => {
                             >
 
                                 <span
-                                    className="absolute top-[7px] left-0 group-hover:left-[79%] transition-all duration-1000 ease-in-out  border border-dark group-hover:border-white w-8 h-8 sm:w-[38px] sm:h-[38px] rounded-full inline-flex items-center justify-center"
+                                    className="absolute top-[7px] left-0 group-hover:left-[72%] transition-all duration-1000 ease-in-out  border border-dark group-hover:border-white w-8 h-8 sm:w-[38px] sm:h-[38px] rounded-full inline-flex items-center justify-center"
                                 >
 
                                     <svg
@@ -36,12 +36,12 @@ const Navbar = () => {
                                             d="M0 7.5H22M22 7.5C19.5905 7.04545 14.7714 4.90909 14.7714 0M22 7.5C19.5905 7.95455 14.7714 10.0909 14.7714 15"
                                             className="group-hover:stroke-white transition-all duration-1000 ease-in-out "
                                             stroke="black"
-                                            stroke-width="1.5"
-                                            stroke-linejoin="round"
+                                            strokeWidth="1.5"
+                                            strokeLinejoin="round"
                                         />
                                     </svg>
                                 </span>
-                                Start Project
+                                Hire us
 
                             </div>
                         </a>

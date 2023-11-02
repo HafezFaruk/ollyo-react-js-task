@@ -37,6 +37,7 @@ const Footer = () => {
                    <li>Web Design</li>
                   <li>Web App Development</li>
                  <li>Mobile App</li>
+                 <li>UI/UX Design</li>
                 </ul>
               </div>
               <div >
@@ -45,7 +46,7 @@ const Footer = () => {
                   <a className="hover:text-green-300" target='_blank' href="https://www.facebook.com/HafezFarukBD/"><li>Facebook</li></a>
                   <a className="hover:text-green-300" target='_blank' href="https://www.instagram.com/hafez_faruk/"><li>Instagram</li></a>
                   <a className="hover:text-green-300" target='_blank' href="https://twitter.com/HafezFaruk5"><li>Twitter</li></a>
-                  <a className="hover:text-green-300" target='_blank' href="https://www.linkedin.com/in/hafez-faruk/"><li>linkedin</li></a>
+                  <a className="hover:text-green-300" target='_blank' href="https://www.linkedin.com/in/hafez-faruk/"><li>Linkedin</li></a>
                 </ul>
               </div>
 
