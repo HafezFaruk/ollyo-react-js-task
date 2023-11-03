@@ -3,7 +3,7 @@ import uploadIcon from "@/assets/images/uploadIcon.svg";
 import imageData from "@/assets/data";
 
 const Gallery = () => {
-  
+
   const [images, setImages] = useState(imageData);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedImage, setDraggedImage] = useState(null);
@@ -144,21 +144,21 @@ const Gallery = () => {
           ))}
 
 
-          <div className="img-upload-card">
-            <label className='img-upload-label'>
 
-              <img src={uploadIcon} alt="upload icon" loading='lazy' />
+          <label className="img-upload-card">
 
-              <span className="mt-3 text-2xl font-medium">Add Images</span>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImageUpload}
-                className="hidden"
-              />
-            </label>
-          </div>
+            <img src={uploadIcon} alt="upload icon" loading='lazy' />
+
+            <span className="mt-3 text-2xl font-medium">Add Images</span>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageUpload}
+              className="hidden"
+            />
+          </label>
+
 
         </div>
 
