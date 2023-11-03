@@ -8,7 +8,7 @@ const Navbar = () => {
             <nav className="relative z-[999] text-white  py-7">
                 <div className="container text-black mx-auto px-5">
                     <div className="flex justify-between items-center">
-                    
+
                         <a href="https://github.com/HafezFaruk" target='_blank' className="font-semibold sm:font-bold text-base sm:text-xl lg:text-5xl"   >
                             DEVELOP.ME
                         </a>
@@ -17,9 +17,14 @@ const Navbar = () => {
                             <div
 
                                 className="pl-12 sm:pl-[51px] pr-[13px] py-2 sm:py-[10px] group-hover:pl-[13px] group-hover:pr-[51px] group-hover:bg-gray-950 group-hover:text-white transition-all duration-1000 ease-in-out border border-black group-hover:border-white  cursor-pointer rounded-full font-medium  text-black text-lg sm:text-2xl relative"
-                                
-                            >
 
+                            >
+                                <div className='h-4 w-4 absolute -top-2 left-2'>
+                                    <span className="relative flex h-4 w-4">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#02BCCC] opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-4 w-4 bg-sky-500"></span>
+                                    </span>
+                                </div>
                                 <span
                                     className="absolute top-[7px] left-0 group-hover:left-[72%] transition-all duration-1000 ease-in-out  border border-dark group-hover:border-white w-8 h-8 sm:w-[38px] sm:h-[38px] rounded-full inline-flex items-center justify-center"
                                 >

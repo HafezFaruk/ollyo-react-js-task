@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uploadIcon from "@/assets/images/uploadIcon.svg"
 const Gallery = () => {
   const imageData = [
@@ -17,10 +17,13 @@ const Gallery = () => {
   const [images, setImages] = useState(imageData);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedImage, setDraggedImage] = useState(null);
-
+  const [prevDragIndex, setDragIndex] = useState(null);
+  
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData('text/plain', index);
     setDraggedImage(index);
+    setDragIndex(index);
+   
   };
 
   const handleDragOver = (e, index) => {
@@ -37,6 +40,15 @@ const Gallery = () => {
     setDraggedImage(null);
   };
 
+  useEffect(() => {
+    if (!draggedImage) {
+      setTimeout(() => {
+        setDragIndex(null);
+      }, 500)
+    }
+ 
+
+  }, [draggedImage])
   const handleCheckboxChange = (id) => {
     if (selectedImages.includes(id)) {
       setSelectedImages(selectedImages.filter(imageId => imageId !== id));
@@ -68,8 +80,8 @@ const Gallery = () => {
 
   return (
     <div className="py-10 md:py-20 px-5">
-      <div className='mb-20'>
-        <h1 className="gallery-heading">Real Project and <br /> Real Results</h1>
+      <div className='mb-20 '>
+        <h1 className="gallery-heading ">Real Project and <br /> Real Results</h1>
         <p className='gallery-description'>Task completed: Successfully executed project, meeting all requirements, deadlines, and quality standards. </p>
       </div>
       <div className="gallery-container">
@@ -95,27 +107,33 @@ const Gallery = () => {
         </div>
         <hr />
         <div className="gallery-content">
-          {images.map((image, index) => (
+          {images?.map((image, index) => (
             <div
-              key={image.id}
+              key={image?.id}
               onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => handleDragOver(e, index)}
               onDrop={(e) => handleDrop(e, index)}
               draggable
-              className={`drag-content-default group ${index === 0 ? 'drag-content' : ' drag-content-size'} ${handleDragStart && draggedImage === index ? 'drag-start' : 'animation'} ${handleDragOver && draggedImage === index ? 'drag-over' : 'animation'} ${handleDrop && draggedImage === index ? 'drag-drop' : 'animation'} `}
+              className={`drag-content-default translate-x-3 group 
+              ${index === 0 ? 'drag-content' : ' drag-content-size'} 
+              ${handleDragStart && draggedImage === index ? 'drag-start' : 'animation'} 
+              ${handleDragOver && draggedImage === index ? 'drag-over' : 'animation'} 
+              ${handleDrop && draggedImage === index ? 'drag-drop' : 'animation'} 
+              ${draggedImage ? "" : !draggedImage && prevDragIndex === index ? "drag-drop" : "animation"} `}
+
             >
 
               <input
                 type="checkbox"
-                checked={selectedImages.includes(image.id)}
-                onChange={() => handleCheckboxChange(image.id)}
+                checked={selectedImages.includes(image?.id)}
+                onChange={() => handleCheckboxChange(image?.id)}
                 className="checkbox "
               />
 
-              <img className="card-images" src={image.src} alt={`Image ${index}`} width={200} height={200} loading='lazy' />
+              <img className="card-images" src={image?.src} alt={`Image ${index}`} width={200} height={200} loading='lazy' />
 
 
-              <div className={`${selectedImages.includes(image.id) ? ' card-active' : ''} card-bg-hover`}>
+              <div className={`${selectedImages.includes(image?.id) ? ' card-active' : ''} card-bg-hover`}>
               </div>
 
             </div>
@@ -125,7 +143,7 @@ const Gallery = () => {
           <div>
             <label className="img-upload-card">
 
-              <img src={uploadIcon} alt="upload icon" loading='lazy'/>
+              <img src={uploadIcon} alt="upload icon" loading='lazy' />
 
               <span className="mt-3 text-base leading-normal">Add Images</span>
               <input

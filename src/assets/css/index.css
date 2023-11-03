@@ -11,14 +11,18 @@
 
     .gallery-heading {
         @apply text-4xl lg:text-7xl font-bold text-gray-950 text-center mb-6;
+        animation: fade-in-heading 1s ease-in-out forwards;
     }
 
     .gallery-description {
         @apply text-lg font-normal text-gray-600 max-w-[600px] mx-auto text-center;
+        animation: fade-in-description 1s ease-in-out forwards;
     }
 
     .gallery-container {
         @apply container mx-auto bg-white rounded-xl;
+        animation: fade-in-gallery 1s ease-in-out forwards;
+
     }
 
     .gallery-aria {
@@ -80,4 +84,41 @@
     .img-upload-card {
         @apply w-full h-full min-h-[250px] sm:min-h-[200px] md:max-h-[290px] lg:max-h-[230px] 2xl:max-h-[290px] flex flex-col justify-center items-center px-4 py-6 tracking-wide cursor-pointer hover:bg-gray-200 bg-white shadow-lg rounded-lg border-[4px] border-dotted border-gray-300;
     }
+
+    @keyframes fade-in-heading {
+        0% {
+            transform: translatex(-80%);
+            rotate: -8deg;
+        }
+
+        100% {
+            transform: translatex(0);
+            rotate: 0deg;
+        }
+    }
+
+    @keyframes fade-in-description {
+        0% {
+            transform: translatex(+80%);
+            rotate: 8deg;
+        }
+
+        100% {
+            transform: translatex(0);
+            rotate: 0deg;
+        }
+    }
+
+    @keyframes fade-in-gallery {
+        0% {
+            transform: translatey(+30%);
+        }
+
+        100% {
+            transform: translatey(0);
+        }
+    }
+
+
+
 }
