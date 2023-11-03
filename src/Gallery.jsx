@@ -1,29 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import uploadIcon from "@/assets/images/uploadIcon.svg"
+import uploadIcon from "@/assets/images/uploadIcon.svg";
+import imageData from "@/assets/data";
+
 const Gallery = () => {
-  const imageData = [
-    { id: '1', src: 'https://i.ibb.co/f0Cmrm4/image-11.jpg' },
-    { id: '2', src: 'https://i.ibb.co/307cPF5/image-3.webp' },
-    { id: '3', src: 'https://i.ibb.co/BT78qy5/image-2.webp' },
-    { id: '4', src: 'https://i.ibb.co/QPKQ14R/image-4.webp' },
-    { id: '5', src: 'https://i.ibb.co/37WT94V/image-5.webp' },
-    { id: '6', src: 'https://i.ibb.co/tpxg9BL/image-6.webp' },
-    { id: '7', src: 'https://i.ibb.co/6NSjL2R/image-10.jpg' },
-    { id: '8', src: 'https://i.ibb.co/Q6V735v/image-8.webp' },
-    { id: '9', src: 'https://i.ibb.co/HrS4xG4/image-9.webp' },
-    { id: '10', src: 'https://i.ibb.co/Ky8dJvM/image-7.webp' },
-    { id: '11', src: 'https://i.ibb.co/4gyND37/image-1.webp' },
-  ]
+  
   const [images, setImages] = useState(imageData);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedImage, setDraggedImage] = useState(null);
   const [prevDragIndex, setDragIndex] = useState(null);
-  
+  const [toggleIndex, setToggleIndex] = useState(null);
+  const [fixedId, setFixedId] = useState(null);
+
   const handleDragStart = (e, index) => {
-    e.dataTransfer.setData('text/plain', index);
+    e.dataTransfer.setData("text/plain", index);
     setDraggedImage(index);
     setDragIndex(index);
-   
+    setToggleIndex(true);
+    setFixedId(index);
   };
 
   const handleDragOver = (e, index) => {
@@ -32,11 +25,19 @@ const Gallery = () => {
 
   const handleDrop = (e, index) => {
     e.preventDefault();
+    setToggleIndex(false);
     const newImages = [...images];
-    const droppedImage = newImages[draggedImage];
-    newImages.splice(draggedImage, 1);
-    newImages.splice(index, 0, droppedImage);
-    setImages(newImages);
+    if (draggedImage) {
+      const droppedImage = newImages[draggedImage];
+      newImages.splice(draggedImage, 1);
+      newImages.splice(index, 0, droppedImage);
+      setImages(newImages);
+    } else {
+      const droppedImage = newImages[fixedId];
+      newImages.splice(fixedId, 1);
+      newImages.splice(index, 0, droppedImage);
+      setImages(newImages);
+    }
     setDraggedImage(null);
   };
 
@@ -44,11 +45,14 @@ const Gallery = () => {
     if (!draggedImage) {
       setTimeout(() => {
         setDragIndex(null);
-      }, 500)
+      }, 500);
+    } else if (draggedImage && toggleIndex) {
+      setTimeout(() => {
+        setDraggedImage(null);
+      }, 500);
     }
- 
+  }, [draggedImage, toggleIndex]);
 
-  }, [draggedImage])
   const handleCheckboxChange = (id) => {
     if (selectedImages.includes(id)) {
       setSelectedImages(selectedImages.filter(imageId => imageId !== id));
@@ -114,7 +118,7 @@ const Gallery = () => {
               onDragOver={(e) => handleDragOver(e, index)}
               onDrop={(e) => handleDrop(e, index)}
               draggable
-              className={`drag-content-default translate-x-3 group 
+              className={`drag-content-default group 
               ${index === 0 ? 'drag-content' : ' drag-content-size'} 
               ${handleDragStart && draggedImage === index ? 'drag-start' : 'animation'} 
               ${handleDragOver && draggedImage === index ? 'drag-over' : 'animation'} 
