@@ -140,12 +140,12 @@ const Gallery = () => {
           ))}
 
 
-          <div>
-            <label className="img-upload-card">
+          <div className="img-upload-card">
+            <label className='img-upload-label'>
 
               <img src={uploadIcon} alt="upload icon" loading='lazy' />
 
-              <span className="mt-3 text-base leading-normal">Add Images</span>
+              <span className="mt-3 text-2xl font-medium">Add Images</span>
               <input
                 type="file"
                 accept="image/*"

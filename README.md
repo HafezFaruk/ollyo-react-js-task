@@ -7,9 +7,9 @@ Task completed: Successfully executed project, meeting all requirements, deadlin
 React, Vit, Tailwind CSS
 
 ## Installation
+### git clone "URL" OR download zip file
 
 ```bash
-git clone "URL" OR download zip file
 npm install 
 npm run dev
 ```
