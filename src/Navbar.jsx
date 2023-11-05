@@ -9,7 +9,7 @@ const Navbar = () => {
                 <div className="container text-black mx-auto px-5">
                     <div className="flex justify-between items-center">
 
-                        <a href="https://github.com/HafezFaruk" target='_blank' className="font-semibold sm:font-bold text-base sm:text-xl lg:text-5xl"   >
+                        <a href="https://github.com/HafezFaruk/ollyo-react-js-task" target='_blank' className="font-semibold sm:font-bold text-base sm:text-xl lg:text-5xl"   >
                             DEVELOP.ME
                         </a>
                         <a href="https://ollyo.com/" target='_blank' className="group flex items-center gap-x-2">
