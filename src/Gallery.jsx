@@ -7,53 +7,65 @@ const Gallery = () => {
   const [images, setImages] = useState(imageData);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedImage, setDraggedImage] = useState(null);
-  const [prevDragIndex, setDragIndex] = useState(null);
-  const [toggleIndex, setToggleIndex] = useState(null);
-  const [fixedId, setFixedId] = useState(null);
+  const [dragProduct, setDragProduct] = useState(null);
+  const [toggleProduct, setToggleIProduct] = useState(null);
+  const [productId, setProductId] = useState(null);
 
-  const handleDragStart = (e, index) => {
+  const productDragStart = (e, index) => {
     e.dataTransfer.setData("text/plain", index);
     setDraggedImage(index);
-    setDragIndex(index);
-    setToggleIndex(true);
-    setFixedId(index);
+    setDragProduct(index);
+    setToggleIProduct(true);
+    setProductId(index);
   };
 
-  const handleDragOver = (e, index) => {
+  const productDragOver = (e, index) => {
     e.preventDefault();
   };
 
-  const handleDrop = (e, index) => {
+  const productDrop = (e, index) => {
     e.preventDefault();
-    setToggleIndex(false);
+    setToggleIProduct(false);
     const newImages = [...images];
-    if (draggedImage) {
+
+    if ((draggedImage || draggedImage === 0)) {
       const droppedImage = newImages[draggedImage];
+      console.log();
       newImages.splice(draggedImage, 1);
       newImages.splice(index, 0, droppedImage);
       setImages(newImages);
     } else {
-      const droppedImage = newImages[fixedId];
-      newImages.splice(fixedId, 1);
+      const droppedImage = newImages[productId];
+      newImages.splice(productId, 1);
       newImages.splice(index, 0, droppedImage);
       setImages(newImages);
+      setProductId(null);
     }
     setDraggedImage(null);
   };
 
   useEffect(() => {
     if (!draggedImage) {
-      setTimeout(() => {
-        setDragIndex(null);
-      }, 500);
-    } else if (draggedImage && toggleIndex) {
+      if (draggedImage !== 0) {
+        setTimeout(() => {
+          setDragProduct(null);
+        }, 500);
+      }
+      else {
+        if ((draggedImage || draggedImage === 0) && toggleProduct) {
+          setTimeout(() => {
+            setDraggedImage(null);
+          }, 500);
+        }
+      }
+    } else if (draggedImage && toggleProduct) {
       setTimeout(() => {
         setDraggedImage(null);
       }, 500);
     }
-  }, [draggedImage, toggleIndex]);
 
-  const handleCheckboxChange = (id) => {
+  }, [draggedImage, toggleProduct]);
+  const productCheckboxChange = (id) => {
     if (selectedImages.includes(id)) {
       setSelectedImages(selectedImages.filter(imageId => imageId !== id));
     } else {
@@ -61,13 +73,13 @@ const Gallery = () => {
     }
   };
 
-  const handleDeleteSelected = () => {
+  const productDeleteSelected = () => {
     const newImages = images.filter(image => !selectedImages.includes(image.id));
     setImages(newImages);
     setSelectedImages([]);
   };
 
-  const handleImageUpload = (e) => {
+  const productImageUpload = (e) => {
     const files = e.target.files;
     const newImages = [...images];
 
@@ -106,7 +118,7 @@ const Gallery = () => {
             }
           </div>
           <div>
-            <button className='text-red-500 hover:underline' onClick={handleDeleteSelected}>Delete Files</button>
+            <button className='text-red-500 hover:underline' onClick={productDeleteSelected}>Delete Files</button>
           </div>
         </div>
         <hr />
@@ -114,23 +126,27 @@ const Gallery = () => {
           {images?.map((image, index) => (
             <div
               key={image?.id}
-              onDragStart={(e) => handleDragStart(e, index)}
-              onDragOver={(e) => handleDragOver(e, index)}
-              onDrop={(e) => handleDrop(e, index)}
+              onDragStart={(e) => productDragStart(e, index)}
+              onDragOver={(e) => productDragOver(e, index)}
+              onDrop={(e) => productDrop(e, index)}
               draggable
               className={`drag-content-default group 
               ${index === 0 ? 'drag-content' : ' drag-content-size'} 
-              ${handleDragStart && draggedImage === index ? 'drag-start' : 'animation'} 
-              ${handleDragOver && draggedImage === index ? 'drag-over' : 'animation'} 
-              ${handleDrop && draggedImage === index ? 'drag-drop' : 'animation'} 
-              ${draggedImage ? "" : !draggedImage && prevDragIndex === index ? "drag-drop" : "animation"} `}
-
+              ${productDragStart && draggedImage === index ? 'drag-start' : 'animation'} 
+              ${productDragOver && draggedImage === index ? 'drag-over' : 'animation'} 
+              ${productDrop && draggedImage === index ? 'drag-drop' : 'animation'}               
+              ${(draggedImage || draggedImage === 0)
+                  ? ""
+                  : !draggedImage && dragProduct === index
+                    ? "drag-drop"
+                    : "animation"
+                }  `}
             >
 
               <input
                 type="checkbox"
                 checked={selectedImages.includes(image?.id)}
-                onChange={() => handleCheckboxChange(image?.id)}
+                onChange={() => productCheckboxChange(image?.id)}
                 className="checkbox "
               />
 
@@ -154,7 +170,7 @@ const Gallery = () => {
               type="file"
               accept="image/*"
               multiple
-              onChange={handleImageUpload}
+              onChange={productImageUpload}
               className="hidden"
             />
           </label>
