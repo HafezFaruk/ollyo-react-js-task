@@ -117,9 +117,10 @@ const Gallery = () => {
               <p>Products Gallery</p>
             }
           </div>
-          <div>
+          {selectedImages.length > 0 ? <div>
             <button className='text-red-500 hover:underline' onClick={productDeleteSelected}>Delete Files</button>
-          </div>
+          </div> : ""}
+
         </div>
         <hr />
         <div className="gallery-content">
